@@ -4,7 +4,7 @@ import secrets
 
 def main():
     artist_name = input("Enter an artist to view their top songs: ")
-    artist_songs = find_artist(artist_name)
+    artist_songs = find_artist(artist_name)[0]
     song_lyrics = input("What song number would you like lyrics for? ")
     get_lyrics(artist_songs[int(song_lyrics) - 1])
     return
@@ -17,19 +17,24 @@ def find_artist(name):
 
     headers = {
         "X-RapidAPI-Host": "genius-song-lyrics1.p.rapidapi.com",
-        "X-RapidAPI-Key": secrets.api_key
+        "X-RapidAPI-Key": "67167d2a9cmshc58048f31e25f90p1e5d4cjsn132ef897bf0f"
     }
 
     response = r.get(url, headers=headers, params=querystring)
     print(response.json())
     hits = response.json()["response"]["hits"]
+
+   # artist = []
+    #artist.append(hits["result"]["id"])
+    artist_id = response.json()["response"]["hits"]["result"]["stats"]["primary_artists"]
+
     songs = []
 
     for i, hit in enumerate(hits):
         songs.append(hit["result"]["api_path"])
         print(f'{i + 1}. {hit["result"]["full_title"]}')
 
-    return songs
+    return songs, artist_id
 
 
 def get_lyrics(api_path):
@@ -37,12 +42,14 @@ def get_lyrics(api_path):
 
     headers = {
         "X-RapidAPI-Host": "genius-song-lyrics1.p.rapidapi.com",
-        "X-RapidAPI-Key": secrets.api_key
+        "X-RapidAPI-Key": "67167d2a9cmshc58048f31e25f90p1e5d4cjsn132ef897bf0f"
     }
 
     response = r.get(url, headers=headers).json()
     obj = response['response']['lyrics']['lyrics']['body']['plain']
     print(obj)
+
+#def get_album():
 
 
 if __name__ == '__main__':
