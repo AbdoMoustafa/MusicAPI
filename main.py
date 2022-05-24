@@ -23,14 +23,11 @@ def find_artist(name):
     response = r.get(url, headers=headers, params=querystring)
     print(response.json())
     hits = response.json()["response"]["hits"]
-
-   # artist = []
-    #artist.append(hits["result"]["id"])
-    artist_id = response.json()["response"]["hits"]["result"]["stats"]["primary_artists"]
-
+    artist = []
     songs = []
 
     for i, hit in enumerate(hits):
+        artist.append(hit["result"]["primary_artist"]["api_path"])
         songs.append(hit["result"]["api_path"])
         print(f'{i + 1}. {hit["result"]["full_title"]}')
 
