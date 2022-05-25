@@ -17,7 +17,7 @@ def find_artist(name):
 
     headers = {
         "X-RapidAPI-Host": "genius-song-lyrics1.p.rapidapi.com",
-        "X-RapidAPI-Key": "67167d2a9cmshc58048f31e25f90p1e5d4cjsn132ef897bf0f"
+        "X-RapidAPI-Key": "8fb30a6f84msh304f7b132f6155cp101c24jsnb5cf49b26e0e"
     }
 
     response = r.get(url, headers=headers, params=querystring)
@@ -39,7 +39,7 @@ def get_lyrics(api_path):
 
     headers = {
         "X-RapidAPI-Host": "genius-song-lyrics1.p.rapidapi.com",
-        "X-RapidAPI-Key": "67167d2a9cmshc58048f31e25f90p1e5d4cjsn132ef897bf0f"
+        "X-RapidAPI-Key": "8fb30a6f84msh304f7b132f6155cp101c24jsnb5cf49b26e0e"
     }
 
     response = r.get(url, headers=headers).json()
